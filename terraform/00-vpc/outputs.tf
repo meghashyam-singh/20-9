@@ -19,15 +19,15 @@ output "database_subnet_ids" {
 }
 
 output "public_route_table_id" {
-    value = aws_route_table.public.id
+    value = aws_route_table.public_rt.id
 }
 
 output "private_route_table_id" {
-    value = aws_route_table.private.id
+    value = aws_route_table.private_rt.id
 }
 
 output "database_route_table_id" {
-    value = aws_route_table.database.id
+    value = aws_route_table.database_rt.id
 }
 
 output "roboshop_eip" {

@@ -84,37 +84,37 @@ resource "aws_nat_gateway" "roboshop_nat" {
 }
 
 resource "aws_route" "public" {
-    route_table_id = aws_route_table.public.id
+    route_table_id = aws_route_table.public_rt.id
     destination_cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.roboshop_igw.id
 }
 
 resource "aws_route" "private" {
-    route_table_id = aws_route_table.private.id
+    route_table_id = aws_route_table.private_rt.id
     destination_cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.roboshop_nat.id
 }
 
 resource "aws_route" "database" {
-    route_table_id = aws_route_table.database.id
+    route_table_id = aws_route_table.database_rt.id
     destination_cidr_block = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.roboshop_nat.id
 }
 
 resource "aws_route_table_association" "public" {
     count = length(var.az)
-    route_table_id = aws_route_table.public.id
+    route_table_id = aws_route_table.public_rt.id
     subnet_id = aws_subnet.public[count.index].id
 }
 
 resource "aws_route_table_association" "private" {
     count = length(var.az)
-    route_table_id = aws_route_table.private.id
+    route_table_id = aws_route_table.private_rt.id
     subnet_id = aws_subnet.private[count.index].id
 }
 
 resource "aws_route_table_association" "database" {
     count = length(var.az)
-    route_table_id = aws_route_table.database.id
+    route_table_id = aws_route_table.database_rt.id
     subnet_id = aws_subnet.database[count.index].id
 }
