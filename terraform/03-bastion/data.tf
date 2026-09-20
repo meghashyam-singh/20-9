@@ -22,6 +22,12 @@ data "aws_ami" "ami_id" {
 
     filter {
       name = "root-device-type"
-      values = ["EBS"]
+      values = ["ebs"]
+    }
+
+    filter {
+      name = "name"
+      values = ["Redhat-9-DevOps-Practice"]
     }
 }
+
