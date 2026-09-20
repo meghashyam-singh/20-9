@@ -11,7 +11,7 @@ data "aws_ami" "ami_id" {
     most_recent = true
 
     filter {
-      name = "Architecture"
+      name = "architecture"
       values = ["x86_64"]
     }
 
