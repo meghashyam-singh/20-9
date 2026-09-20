@@ -19,11 +19,6 @@ data "aws_ami" "ami_id" {
       name = "virtualization-type"
       values = ["hvm"]
     }
-    
-    filter {
-      name = "root-device-name"
-      values = ["/dev/sda1"]
-    }
 
     filter {
       name = "root-device-type"
